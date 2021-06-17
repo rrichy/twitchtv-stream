@@ -1,13 +1,88 @@
-body {
+*, body, #root {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  background: linear-gradient(0deg,#29293d, #454566);
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
+}
+
+#wrapper {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 300px auto;
+}
+
+/* Users List and User data */
+.user-list {
+  height: 100%;
+  background:linear-gradient(45deg, #292c3d, #29343d);
+}
+
+.user {
+	height: fit-content;
+	padding: 1rem;
+	display: flex;
+
+	border-bottom: 1px solid grey;
+	align-items: center;
+}
+
+.user-icon {
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	border: white 3px solid;
+	margin-right: 1rem;
+}
+
+.user-description {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: inherit;
+}
+
+.user:hover .game-description {
+	animation: textscroll 7s linear infinite;
+}
+
+@keyframes textscroll {
+	0% { transform: translateX(0%); }
+	80% { transform: translateX(-100%); }
+	100% { transform: translateX(-100%); }
+}
+
+/* Footer data */
+#footer {
+	align-self: flex-end;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-top: 1rem;
+	width: 100%;
+	height: 3.5rem;
+	color: #909090;
+	background: #1f1f2e;
+}
+
+#footer > p {
+	font-weight: 400;
+	font-style: italic;
+	margin-right: 1rem;
+}
+
+#footer > a {
+	height: fit-content;
+	margin-right: .5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: inherit;
 }
