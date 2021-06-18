@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faFreeCodeCamp, faCodepen } from '@fortawesome/free-brands-svg-icons';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { ajax } from 'jquery';
+
 
 import UserList from './component/userlist.jsx';
 
 class App extends Component {
 	state = {
 		users: [],
+		test: '',
+		onHeight: 0,
+		offHeight: 0,
 	};
 
 	async componentDidMount() {
@@ -31,9 +33,9 @@ class App extends Component {
 			users[name] = { 
 				display_name,
 				bio: bio === null ? '' : bio,
+				logo,
 				id,
-				logo, 
-				created_at,
+				created_at: new Date(created_at).toLocaleDateString(),
 				link: 'https://www.twitch.tv/' + name,
 			}
 
@@ -53,13 +55,26 @@ class App extends Component {
 		users = Object.values(users);
 
 		this.setState({ users });
+
+		const on = document.querySelector('#on-list');
+		const off = document.querySelector('#off-list');
+		const onHeight = on.offsetHeight;
+		const offHeight = off.offsetHeight;
+
+		console.log('onHeight:', onHeight);
+		console.log('offHeight:', offHeight);
+
+		on.style.maxHeight = onHeight +"px";
+		off.style.maxHeight = offHeight + "px";
+
+		this.setState({ onHeight, offHeight });
 		console.log(this.state.users);
 	}
 	
-	render() { 
+	render() {
 		return (
 			<div id='wrapper'>
-				<UserList users={this.state.users}/>
+				<UserList users={this.state.users} onHeight={this.state.onHeight} offHeight={this.state.offHeight}/>
 				<div id="footer">
 					<p>Created and designed by rrichy</p>
 					<a href="https://github.com/rrichy" target="_blank"><FontAwesomeIcon icon={faGithub} className="fa-lg" /></a>

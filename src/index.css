@@ -1,6 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
+:root {
+	--text: white;
+	--subtext: #cfded2;
+}
+
 *, body, #root {
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -22,24 +30,61 @@ body {
 /* Users List and User data */
 .user-list {
   height: 100%;
-  background:linear-gradient(45deg, #292c3d, #29343d);
+  background: linear-gradient(45deg, #292c3d, #29343d);
 }
 
 .user {
-	height: fit-content;
-	padding: 1rem;
+	/* height: fit-content; */
 	display: flex;
-
+	flex-direction: row;
 	border-bottom: 1px solid grey;
+	transition: background .3s;
+}
+
+.user > a {
+	padding: .75rem;
+	display: flex;
+	flex-direction: row;
+	color: var(--text);
 	align-items: center;
+	text-decoration: none;
+	width: 100%;
+	overflow: hidden;
+	transition: .4s;
+}
+
+.list {
+	transition: max-height .2s;
+	overflow: hidden;
 }
 
 .user-icon {
 	width: 45px;
 	height: 45px;
 	border-radius: 50%;
-	border: white 3px solid;
+	border: grey 3px solid;
 	margin-right: 1rem;
+}
+
+#tooltip {
+	position: fixed;
+	left: 310px;
+	max-width: 300px;
+	opacity: 0;
+	background: linear-gradient(45deg, #292c3d, #29343d);
+	color: var(--text);
+	transition: .2s;
+	padding: 1rem;
+	border-radius: .4rem;
+}
+
+#tooltip > p {
+	color: var(--subtext);
+	font-size: .9em;
+}
+
+.active {
+	border: green 3px solid;
 }
 
 .user-description {
@@ -49,7 +94,35 @@ body {
 	width: inherit;
 }
 
-.user:hover .game-description {
+.user-description > p {
+	font-size: .9em;
+	color: var(--subtext);
+}
+
+.status {
+	color: var(--text);
+	border-bottom: 1px solid grey;
+	padding: .25rem 1rem;
+	cursor: pointer;
+	text-align: left;
+	background: linear-gradient(45deg, #292c3d, #29343d);
+	transition: background .3s;
+}
+
+.fa-angle-down {
+	margin-right: 1rem;
+	transition: .2s;
+}
+
+.user:hover {
+	background: rgba(255, 255, 255, 0.356);
+}
+
+.status:hover {
+	background: rgba(255, 255, 255, 0.356);
+}
+
+.user:hover .overflow-description {
 	animation: textscroll 7s linear infinite;
 }
 
