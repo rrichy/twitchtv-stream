@@ -1,89 +1,101 @@
-import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faFreeCodeCamp, faCodepen } from '@fortawesome/free-brands-svg-icons';
+import React, { Component } from "react";
 
-
-import UserList from './component/userlist.jsx';
+import Footer from "./component/Footer";
+import UserList from "./component/Userlist";
 
 class App extends Component {
-	state = {
-		users: [],
-		test: '',
-		onHeight: 0,
-		offHeight: 0,
-	};
+  state = {
+    users: [],
+    test: "",
+    onHeight: 0,
+    offHeight: 0,
+  };
 
-	async componentDidMount() {
-		const user_ids = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
-		let users = {};
+  async componentDidMount() {
+    const user_ids = [
+      "ESL_SC2",
+      "OgamingSC2",
+      "cretetion",
+      "freecodecamp",
+      "storbeck",
+      "habathcx",
+      "RobotCaleb",
+      "noobs2ninjas",
+    ];
+    let users = {};
 
-		const fetchData = [];
+    const fetchData = [];
 
-		user_ids.forEach(u => {
-			fetchData.push(fetch('https://twitch-proxy.freecodecamp.rocks/twitch-api/users/' + u))
-			fetchData.push(fetch('https://twitch-proxy.freecodecamp.rocks/twitch-api/streams/' + u));
-		});
-		
-		const promises = await Promise.all(fetchData);
-		const jsonDatas = await Promise.all(promises.map(d => d.json()));
+    user_ids.forEach((u) => {
+      fetchData.push(
+        fetch("https://twitch-proxy.freecodecamp.rocks/twitch-api/users/" + u)
+      );
+      fetchData.push(
+        fetch("https://twitch-proxy.freecodecamp.rocks/twitch-api/streams/" + u)
+      );
+    });
 
-		while(jsonDatas.length) {
-			const [ {display_name, bio, name, _id: id, logo, created_at}, { stream } ] = jsonDatas.splice(0, 2);
-			
-			users[name] = { 
-				display_name,
-				bio: bio === null ? '' : bio,
-				logo,
-				id,
-				created_at: new Date(created_at).toLocaleDateString(),
-				link: 'https://www.twitch.tv/' + name,
-			}
+    const promises = await Promise.all(fetchData);
+    const jsonDatas = await Promise.all(promises.map((d) => d.json()));
 
-			if(stream) {
-				const { game, viewers, channel } = stream;
-				const { language, status } = channel;
-				
-				users[name].language = language;
-				users[name].game = game;
-				users[name].viewers = viewers;
-				users[name].status = status;
-				users[name].active = true;
-			}
-			else users[name].active = false;
-		}
+    while (jsonDatas.length) {
+      const [
+        { display_name, bio, name, _id: id, logo, created_at },
+        { stream },
+      ] = jsonDatas.splice(0, 2);
 
-		users = Object.values(users);
+      users[name] = {
+        display_name,
+        bio: bio === null ? "" : bio,
+        logo,
+        id,
+        created_at: new Date(created_at).toLocaleDateString(),
+        link: "https://www.twitch.tv/" + name,
+      };
 
-		this.setState({ users });
+      if (stream) {
+        const { game, viewers, channel } = stream;
+        const { language, status } = channel;
 
-		const on = document.querySelector('#on-list');
-		const off = document.querySelector('#off-list');
-		const onHeight = on.offsetHeight;
-		const offHeight = off.offsetHeight;
+        users[name].language = language;
+        users[name].game = game;
+        users[name].viewers = viewers;
+        users[name].status = status;
+        users[name].active = true;
+      } else users[name].active = false;
+    }
 
-		console.log('onHeight:', onHeight);
-		console.log('offHeight:', offHeight);
+    users = Object.values(users);
 
-		on.style.maxHeight = onHeight +"px";
-		off.style.maxHeight = offHeight + "px";
+    this.setState({ users });
 
-		this.setState({ onHeight, offHeight });
-		console.log(this.state.users);
-	}
-	
-	render() {
-		return (
-			<div id='wrapper'>
-				<UserList users={this.state.users} onHeight={this.state.onHeight} offHeight={this.state.offHeight}/>
-				<div id="footer">
-					<p>Created and designed by rrichy</p>
-					<a href="https://github.com/rrichy" target="_blank"><FontAwesomeIcon icon={faGithub} className="fa-lg" /></a>
-					<a href="https://www.freecodecamp.org/rrichy" target="_blank"><FontAwesomeIcon icon={faFreeCodeCamp} className="fa-lg" /></a>
-					<a href="https://codepen.io/rrichy" target="_blank"><FontAwesomeIcon icon={faCodepen} className="fa-lg" /></a>
-				</div>
-			</div>
-		);
-	}
+    const on = document.querySelector("#on-list");
+    const off = document.querySelector("#off-list");
+    const onHeight = on.offsetHeight;
+    const offHeight = off.offsetHeight;
+
+    console.log("onHeight:", onHeight);
+    console.log("offHeight:", offHeight);
+
+    on.style.maxHeight = onHeight + "px";
+    off.style.maxHeight = offHeight + "px";
+
+    this.setState({ onHeight, offHeight });
+    console.log(this.state.users);
+  }
+
+  render() {
+    return (
+      <div id="wrapper">
+        <UserList
+          users={this.state.users}
+          onHeight={this.state.onHeight}
+          offHeight={this.state.offHeight}
+        />
+        <Footer />
+      </div>
+    );
+  }
 }
- 
+
 export default App;

@@ -1,161 +1,175 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
-
-:root {
-	--text: white;
-	--subtext: #cfded2;
-}
-
-*, body, #root {
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
-  background: linear-gradient(0deg,#29293d, #454566);
+  background: -webkit-gradient(linear, left bottom, left top, from(#464c6d), to(#2a2e3e));
+  background: linear-gradient(0deg, #464c6d, #2a2e3e);
+}
+
+body #root {
   height: 100vh;
 }
 
-#root {
-  height: 100%;
-}
-
-#wrapper {
-  display: grid;
+body #root #wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 100%;
   height: 100%;
-  grid-template-columns: 300px auto;
 }
 
-/* Users List and User data */
-.user-list {
+body .user-list {
   height: 100%;
   background: linear-gradient(45deg, #292c3d, #29343d);
+  width: 300px;
 }
 
-.user {
-	/* height: fit-content; */
-	display: flex;
-	flex-direction: row;
-	border-bottom: 1px solid grey;
-	transition: background .3s;
+body .user-list .status {
+  color: white;
+  border-bottom: 1px solid grey;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  text-align: left;
+  background: linear-gradient(45deg, #292c3d, #29343d);
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
 }
 
-.user > a {
-	padding: .75rem;
-	display: flex;
-	flex-direction: row;
-	color: var(--text);
-	align-items: center;
-	text-decoration: none;
-	width: 100%;
-	overflow: hidden;
-	transition: .4s;
+body .user-list .status .fa-angle-down {
+  margin-right: 1rem;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
-.list {
-	transition: max-height .2s;
-	overflow: hidden;
+body .user-list .status:hover {
+  background: rgba(255, 255, 255, 0.356);
 }
 
-.user-icon {
-	width: 45px;
-	height: 45px;
-	border-radius: 50%;
-	border: grey 3px solid;
-	margin-right: 1rem;
+body .user-list .list {
+  -webkit-transition: max-height 0.2s;
+  transition: max-height 0.2s;
+  overflow: hidden;
 }
 
-#tooltip {
-	position: fixed;
-	left: 310px;
-	max-width: 300px;
-	opacity: 0;
-	background: linear-gradient(45deg, #292c3d, #29343d);
-	color: var(--text);
-	transition: .2s;
-	padding: 1rem;
-	border-radius: .4rem;
+body .user-list .list .user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  border-bottom: 1px solid grey;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
 }
 
-#tooltip > p {
-	color: var(--subtext);
-	font-size: .9em;
+body .user-list .list .user a {
+  padding: 0.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  color: white;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-decoration: none;
+  width: 100%;
+  overflow: hidden;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
-.active {
-	border: green 3px solid;
+body .user-list .list .user a .user-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: grey 3px solid;
+  margin-right: 1rem;
 }
 
-.user-description {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	width: inherit;
+body .user-list .list .user a .active {
+  border: green 3px solid;
 }
 
-.user-description > p {
-	font-size: .9em;
-	color: var(--subtext);
+body .user-list .list .user a .user-description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: inherit;
 }
 
-.status {
-	color: var(--text);
-	border-bottom: 1px solid grey;
-	padding: .25rem 1rem;
-	cursor: pointer;
-	text-align: left;
-	background: linear-gradient(45deg, #292c3d, #29343d);
-	transition: background .3s;
+body .user-list .list .user a .user-description p {
+  font-size: 0.9em;
+  color: #cfded2;
 }
 
-.fa-angle-down {
-	margin-right: 1rem;
-	transition: .2s;
+body .user-list .list .user:hover {
+  background: rgba(255, 255, 255, 0.356);
 }
 
-.user:hover {
-	background: rgba(255, 255, 255, 0.356);
+body .user-list .list .user:hover .overflow-description {
+  -webkit-animation: textscroll 7s linear infinite;
+          animation: textscroll 7s linear infinite;
 }
 
-.status:hover {
-	background: rgba(255, 255, 255, 0.356);
+body .user-list #tooltip {
+  position: fixed;
+  left: 310px;
+  max-width: 300px;
+  opacity: 0;
+  background: linear-gradient(45deg, #292c3d, #29343d);
+  color: white;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  padding: 1rem;
+  border-radius: 0.4rem;
 }
 
-.user:hover .overflow-description {
-	animation: textscroll 7s linear infinite;
+body .user-list #tooltip p {
+  color: #cfded2;
+  font-size: 0.9em;
+}
+
+@-webkit-keyframes textscroll {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  80% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  100% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
 }
 
 @keyframes textscroll {
-	0% { transform: translateX(0%); }
-	80% { transform: translateX(-100%); }
-	100% { transform: translateX(-100%); }
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  80% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  100% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
 }
-
-/* Footer data */
-#footer {
-	align-self: flex-end;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	margin-top: 1rem;
-	width: 100%;
-	height: 3.5rem;
-	color: #909090;
-	background: #1f1f2e;
-}
-
-#footer > p {
-	font-weight: 400;
-	font-style: italic;
-	margin-right: 1rem;
-}
-
-#footer > a {
-	height: fit-content;
-	margin-right: .5rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: inherit;
-}
+/*# sourceMappingURL=index.css.map */
