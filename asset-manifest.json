@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/twitchtv-stream/static/css/main.0cf23e43.chunk.css",
+    "main.js": "/twitchtv-stream/static/js/main.31a26604.chunk.js",
+    "main.js.map": "/twitchtv-stream/static/js/main.31a26604.chunk.js.map",
+    "runtime-main.js": "/twitchtv-stream/static/js/runtime-main.a75eba1e.js",
+    "runtime-main.js.map": "/twitchtv-stream/static/js/runtime-main.a75eba1e.js.map",
+    "static/js/2.48e10f60.chunk.js": "/twitchtv-stream/static/js/2.48e10f60.chunk.js",
+    "static/js/2.48e10f60.chunk.js.map": "/twitchtv-stream/static/js/2.48e10f60.chunk.js.map",
+    "index.html": "/twitchtv-stream/index.html",
+    "static/css/main.0cf23e43.chunk.css.map": "/twitchtv-stream/static/css/main.0cf23e43.chunk.css.map",
+    "static/js/2.48e10f60.chunk.js.LICENSE.txt": "/twitchtv-stream/static/js/2.48e10f60.chunk.js.LICENSE.txt",
+    "static/media/user.defb579e.svg": "/twitchtv-stream/static/media/user.defb579e.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a75eba1e.js",
+    "static/js/2.48e10f60.chunk.js",
+    "static/css/main.0cf23e43.chunk.css",
+    "static/js/main.31a26604.chunk.js"
+  ]
+}
